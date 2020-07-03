@@ -1,7 +1,7 @@
 # moqq - minimalistic device mockups.
 This package utilizes Jimp to compose device mockups. Currently only mockups with a pc are supported.
 
-In action: [andreev.work/projects](https://andreev.work/projects)
+In action: <a href="https://andreev.work/projects" target="_blank">andreev.work/projects</a>
 
 ### CLI
 ```
