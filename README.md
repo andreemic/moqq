@@ -1,4 +1,9 @@
 # moqq - minimalistic device mockups.
+This package utilizes Jimp to compose device mockups. Currently only mockups with a pc are supported.
+
+In action: [andreev.work/projects](https://andreev.work/projects)
+
+### CLI
 ```
 moqq-up [options]
 
