@@ -20,3 +20,8 @@ Options:
                                              [string] [default: "./mock-up.png"]
   --help            Show help                                          [boolean
 ```
+### Usage:
+Take a screenshot of your website using Chrome DevTools for all devices you need (choose device, Shift+Ctrl+P, type "Capture Screenshot").
+Then feed them to the cli:
+
+`moqq-up --pc pc-screenshot.png --iphone_x mobile-screenshot.png -w 800 -h 600 -b transparent -o result.png`
