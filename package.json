@@ -1,0 +1,26 @@
+{
+  "name": "moqq",
+  "version": "1.0.0",
+  "description": "Create device mockups from URLs or screenshots.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mock",
+    "up",
+    "device-mock-up",
+    "mockup",
+    "generator"
+  ],
+  "author": "Mikhail Andreev",
+  "license": "ISC",
+  "bin": {
+    "moqq-up": "./src/cli.js"
+  },
+  "dependencies": {
+    "jimp": "^0.12.0",
+    "ora": "^4.0.4",
+    "yargs": "^15.3.1"
+  }
+}
