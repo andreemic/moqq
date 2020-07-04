@@ -83,17 +83,16 @@ class Composition {
 
 }
 
-//Devices with null values are emulated after following spec:
-//https://raw.githubusercontent.com/ChromeDevTools/devtools-frontend/master/front_end/emulated_devices/module.json
+//Devices defined after ChromeDevTools spec (https://raw.githubusercontent.com/ChromeDevTools/devtools-frontend/master/front_end/emulated_devices/module.json)
 util.deviceData = {
   'PC': {
-    w: 960,
-    h: 540,
-    templateFile: 'pc_1.png',
-    maskFile: 'pc_1-mask.png',
-    template: null,
-    mask: null,
-    offset: {}
+    w: 960,                    // screen width
+    h: 540,                    // screen height
+    templateFile: 'pc_1.png',  // file with device template
+    maskFile: 'pc_1-mask.png', // file with screen mask (same dimensions as templateFile)
+    template: null,            // filled with Jimp instance from templateFile in init()
+    mask: null,                // filled with Jimp instance of maskFile in init()
+    offset: {}                 // filled with coordinates of screen (top-left) on template
   },
   'iPhone X' : {
     w: 375,
@@ -133,8 +132,8 @@ function imagePath(fPath) {
 }
 
 /*
- * Reads in mask and template files into Jimp instances and
- * calculates offsets for screenshot placement. Stores all of these in util.deviceData.
+ * Reads in mask and template files as Jimp instances and
+ * calculates offsets for later screenshot placement. Stores all of these in util.deviceData.
  *
  * @returns {Promise} Promise which resolves once initializon is complete.
  */
@@ -177,7 +176,8 @@ util.init = async () => {
 };
 
 /*
- * Searches origin pixel (top left) of mask.
+ * Searches coordinates of most top-left non-black pixel on mask.
+ * This is the point at which the screenshot is placed inside template.
  */
 function extractOffsets(mask) {
   let topLeftPixel = {

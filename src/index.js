@@ -1,25 +1,29 @@
 const util = require('./util.js');
 
+/** Interfacing class **/
 class Moqq {
   constructor() {
-    this.initPromise = util.init();
+    this.initPromise = this.util.init();
   }
 
   setSpinner(spinner) {
     this.spinner = spinner;
   }
 
+  util = util;
+
   /**
    * @typedef ImageInput 
+   * Images can be input as paths, Jimp files or ArrayBuffers.
    * @type {path|Jimp|ArrayBuffer}
    */
 
-  /*
+  /**
    * Composes a Jimp image consisting of devices with 
    * complementary screenshots as declared in options.
    * Returns path to that image or the Jimp instance.
    *
-   * @param {bject} options
+   * @param {object} options
    * @param {object.<string, ImageInput>} options.screenshots - object with deviceNames as keys and paths, ArrayBuffers or Jimps as values.
    * @param {string} [options.resPath] - path to resulting image (relative to caller location).
    * @param {number} [options.w=1280] - width of resulting image.
@@ -30,9 +34,9 @@ class Moqq {
    * @param {number} [options.paddingX=0.8] - Horizontal padding relative to image width (0.0 - 1.0)
    * @param {number} [options.paddingY=0.8] - Vertical padding relative to image height (0.0 - 1.0)
    *
-   * @returns {string|Jimp} path to resulting image or resulting Jimp instance
+   * @returns {string|Jimp} Path to resulting image or resulting Jimp instance
    */
-   up = async (options) => {
+   async up(options) {
     // Make sure we are initialized
     await this.initPromise;
 
@@ -42,7 +46,7 @@ class Moqq {
       this.spinner.start();
     }
 
-    let image = await util.compose(options.w || 1280, options.h || 720, 
+    let image = await this.util.compose(options.w || 1280, options.h || 720, 
       options.screenshots, options.background || 0x00000000, 
       options.statusBar || null, options.paddingX || 0.8, 
       options.paddingY || 0.8, this.spinner);
@@ -57,25 +61,27 @@ class Moqq {
       if (this.spinner) {
         this.spinner.text = 'Writing image';
       }
-      let path = util.writeImage(image, options.resPath);
+      let path = this.util.writeImage(image, options.resPath);
       this.spinner.stop();
       return path;
     }
-  };
+  }
 
   /*
    * Returns all possible deviceNames.
    *
    * @returns {Array<string>}
    */
-  getDeviceNames = () => Object.keys(util.deviceData);
-
-  composeDevice = async () => {
-    await this.initPromise;
-    return util.composeDevice;
+  getDeviceNames() { 
+    return Object.keys(this.util.deviceData);
   }
-  STATUSBAR_LIGHT = util.STATUSBAR_LIGHT;
-  STATUSBAR_DARK = util.STATUSBAR_DARK;
+
+  async composeDevice() {
+    await this.initPromise;
+    return this.util.composeDevice;
+  }
+  STATUSBAR_LIGHT = this.util.STATUSBAR_LIGHT;
+  STATUSBAR_DARK = this.util.STATUSBAR_DARK;
 }
 
 module.exports = Moqq;
