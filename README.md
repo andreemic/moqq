@@ -2,8 +2,8 @@
 This package utilizes Jimp to compose device mockups. Currently only mockups with a pc are supported.
 
 In action: <a href="https://andreev.work/projects" target="_blank">andreev.work/projects</a>
-### Docs
-## Classes
+# JS Docs
+#### Classes
 
 <dl>
 <dt><a href="#Moqq">Moqq</a></dt>
@@ -11,10 +11,10 @@ In action: <a href="https://andreev.work/projects" target="_blank">andreev.work/
 </dd>
 </dl>
 
-## Typedefs
+#### Typedefs
 
 <dl>
-<dt><a href="#ImageInput">ImageInput</a> : <code>path</code> | <code>Jimp</code> | <code>ArrayBuffer</code></dt>
+<dt><span>ImageInput</span> : <code>path</code> | <code>Jimp</code> | <code>ArrayBuffer</code></dt>
 <dd></dd>
 </dl>
 
@@ -48,8 +48,26 @@ Returns path to that image or the Jimp instance.
 
 <a name="ImageInput"></a>
 
+#### JS Usage
+```javascript
+const moqq = new (require('moqq'))();
+moqq.up({
+  screenshots: {
+    pc: 'path/to/pc.png',
+    iphone_x: 'path/to/iphone_x.png'
+  },
+  resPath: 'path/to/result.png',
+  w: 800,
+  h: 600,
+  statusBar: moqq.STATUSBAR_LIGHT,
+  background: 'white'
+}).then((fPath) => {
+  console.log(fPath);
+);
 
-### CLI
+  ```
+
+# CLI
 ```
 moqq-up [options]
 
@@ -71,8 +89,8 @@ Options:
                                              [string] [default: "./mock-up.png"]
   --help            Show help                                          [boolean
 ```
-### Usage:
-Take a screenshot of your website using Chrome DevTools for all devices you need (choose device, Shift+Ctrl+P, type "Capture Screenshot").
+#### CLI Usage:
+Take a screenshot of your website using Chrome DevTools for all devices you need (choose  device, Shift+Ctrl+P, type "Capture Screenshot").
 Then feed them to the cli:
 
 `moqq-up --pc pc-screenshot.png --iphone_x mobile-screenshot.png -w 800 -h 600 -b transparent -o result.png`
