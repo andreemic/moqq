@@ -2,6 +2,12 @@
 This package utilizes Jimp to compose device mockups. Currently only mockups with a pc are supported.
 
 In action: <a href="https://andreev.work/projects" target="_blank">andreev.work/projects</a>
+
+# Installation
+`npm i -g  moqq` for use anywhere. See https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally if EACCESS errors arise.
+
+`npm i moqq` for use in the current package.
+
 # JS Docs
 #### Classes
 
